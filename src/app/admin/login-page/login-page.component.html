@@ -1,0 +1,39 @@
+<div class="alert alert-danger" fxLayout="row" fxLayoutAlign="center center"
+     *ngIf="auth.error$ | async as error ">{{error}}</div>
+
+<div class="alert alert-info" fxLayout="row" fxLayoutAlign="center center"
+     *ngIf="message">{{message}}</div>
+
+<div fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+
+    <form action='' [formGroup]="form" (ngSubmit) = submit()>
+      <mat-card-content >
+        <mat-form-field>
+          <input matInput type="email" placeholder="Email" formControlName = "email"
+                 autocomplete="current-email">
+          <mat-error *ngIf="form.get('email').invalid && form.get('email').touched">
+            <p *ngIf="form.get('email').errors.required">Email is not be empty!</p>
+            <p *ngIf="form.get('email').errors.email">Enter a valid email!</p>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field >
+          <input matInput type="password" formControlName= "password"
+                 placeholder="Password" autocomplete="current-password">
+          <mat-error *ngIf="form.get('password').invalid && form.get('password').touched">
+            <p *ngIf="form.get('password').errors.required">Password is not be empty!</p>
+            <p *ngIf="form.get('password').errors.minlength">The length must be at least {{ form.get('password').errors.minlength.requiredLength }}!</p>
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" class="btn-block" type="submit"
+              [disabled]="form.invalid || submitted " (click)="submit()">Log in</button>
+    </form>
+  </mat-card>
+
+</div>

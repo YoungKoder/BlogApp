@@ -1,0 +1,14 @@
+<mat-card class="card">
+  <mat-card-title class="card-header" >
+    <h2>{{post.title}}</h2>
+    <small>{{ post.date | date:'dd.MM.yyyy'}}</small>
+  </mat-card-title>
+  <mat-card-content>
+    <div>
+      <small>{{post.author}}</small>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" [routerLink]="['/post', post.id]"> Открыть </button>
+  </mat-card-actions>
+</mat-card>
